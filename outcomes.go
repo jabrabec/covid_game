@@ -73,7 +73,7 @@ func recoveryEvaluator(n int) bool {
 
 func recovery(hp, originalHP int, timeframe string) {
 	fmt.Println("You're on the road to recovery!\n")
-	fmt.Printf("You slowly, painfully regain 1 health per %s for the next 6 %ss...\n", timeframe,
+	fmt.Printf("You slowly, painfully regain 1 health per %s, possibly taking up to 6 %ss...\n", timeframe,
 		timeframe)
 	var count int
 	for i := 1; i <= 6; i++ {
