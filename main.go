@@ -51,9 +51,9 @@ func main() {
 		}
 		fmt.Printf("Your choices lead you to infect %d other people.", infected)
 		if infected == 0 {
-			fmt.Printf(" WELL DONE!\n")
+			fmt.Println(" WELL DONE!\n")
 		} else {
-			fmt.Printf(" Can you live with that?\n")
+			fmt.Println(" Can you live with that?\n")
 		}
 
 	case 1:
@@ -93,7 +93,7 @@ func main() {
 			recovery(hp, originalHP, "month")
 		} else {
 			fmt.Println("\nWELLP, you have died of COVID-19. But at least those people were able" +
-				" to get their hair cut, right? ¯\\_(ツ)_/¯")
+				" to get their hair cut, right? ¯\\_(ツ)_/¯\n")
 		}
 	}
 }
