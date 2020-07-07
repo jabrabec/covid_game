@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"time"
 )
 
 var symptomMap = map[int]string{
@@ -17,7 +19,7 @@ func symptomEvaluator(n int) int {
 		status = 0
 	case 60 <= n && n <= 119:
 		status = 1
-	case n > 120:
+	case n >= 120:
 		status = 2
 	}
 	return status
@@ -59,4 +61,67 @@ func getBehavior() int {
 	fmt.Printf("\nYou chose: %+v\n", behaviorMap[num])
 	fmt.Println(shameMap[num] + "\n")
 	return num
+}
+
+func recoveryEvaluator(n int) bool {
+	var status bool
+	if 0 <= n && n <= 119 {
+		status = true
+	}
+	return status
+}
+
+func recovery(hp, originalHP int, timeframe string) {
+	fmt.Printf("You slowly, painfully regain 1 health per %s for the next 6 %ss...\n", timeframe,
+		timeframe)
+	var count int
+	for i := 1; i <= 6; i++ {
+		if hp == originalHP {
+			break
+		}
+		if timeframe == "week" {
+			time.Sleep(1 * time.Second)
+		} else {
+			time.Sleep(2 * time.Second)
+		}
+		fmt.Printf("\t%d\n", i)
+		hp++
+		count++
+	}
+	fmt.Printf("...After %d %s(s) you've healed back up to %d.\n", count, timeframe, hp)
+	if hp > originalHP {
+		hp = originalHP
+	}
+	if hp < originalHP {
+		fmt.Println("\nIs that less than what you started with? Yeah, this disease is terrible." +
+			" Many people just like you have been left with long-term, permanent organ damage." +
+			" But, hey, at least you're still alive!\n")
+	} else {
+		fmt.Println("\nYou've managed to recover fully with no long-lasting effects. Count " +
+			"yourself incredibly lucky!")
+	}
+	os.Exit(0)
+}
+
+func hospitalEvaluator(n int) bool {
+	var result bool
+	if 0 <= n && n <= 109 {
+		result = true
+	}
+	return result
+}
+
+func goToICU(age int) int {
+	fmt.Println("Uh-oh, you're in the ICU. Things could get worse...\n")
+	result := rollDice(1, 100) + age
+	fmt.Printf("You rolled (d100 + your age) = %d\n", result)
+	return result
+}
+
+func goOnVentilator(age int) int {
+	fmt.Println("The hospital staff is putting you on a ventilator. Hopefully you got to say " +
+		"goodbye to your loved ones...\n")
+	result := rollDice(1, 100) + age
+	fmt.Printf("You rolled (d100 + your age) = %d\n", result)
+	return result
 }
