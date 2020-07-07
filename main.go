@@ -78,8 +78,6 @@ func main() {
 			recovery(hp, originalHP, "month")
 		}
 
-		time.Sleep(1 * time.Second)
-
 		icuResult := goToICU(age)
 		if hospitalEvaluator(icuResult) {
 			fmt.Println("You're fortunate enough to make it out of the ICU. Do you have good " +
@@ -87,8 +85,6 @@ func main() {
 				"currently being rationed? Many others are not so lucky...\n")
 			recovery(hp, originalHP, "month")
 		}
-
-		time.Sleep(1 * time.Second)
 
 		ventilatorResult := goOnVentilator(age)
 		if hospitalEvaluator(ventilatorResult) {
