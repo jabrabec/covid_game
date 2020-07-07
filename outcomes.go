@@ -114,14 +114,16 @@ func hospitalEvaluator(n int) bool {
 
 func goToICU(age int) int {
 	fmt.Println("Uh-oh, you're in the ICU. Things could get worse...\n")
-	result := rollDice(1, 100) + age
-	fmt.Printf("You rolled (d100 + your age) = %d\n", result)
-	return result
+	return hospitalRollDice(age)
 }
 
 func goOnVentilator(age int) int {
 	fmt.Println("The hospital staff is putting you on a ventilator. Hopefully you got to say " +
 		"goodbye to your loved ones...\n")
+	return hospitalRollDice(age)
+}
+
+func hospitalRollDice(age int) int {
 	result := rollDice(1, 100) + age
 	fmt.Printf("You rolled (d100 + your age) = %d\n", result)
 	return result
