@@ -80,16 +80,20 @@ func recovery(hp, originalHP int, timeframe string) {
 		if hp == originalHP {
 			break
 		}
-		if timeframe == "week" {
-			time.Sleep(1 * time.Second)
-		} else {
-			time.Sleep(2 * time.Second)
+		fmt.Print("\t")
+		for i := 1; i <= 4; i++ {
+			if timeframe == "week" {
+				time.Sleep(250 * time.Millisecond)
+			} else {
+				time.Sleep(500 * time.Millisecond)
+			}
+			fmt.Print(".")
 		}
-		fmt.Printf("\t%d\n", i)
+		fmt.Printf("%d\n", i)
 		hp++
 		count++
 	}
-	fmt.Printf("...After %d %s(s) you've healed back up to %d.\n", count, timeframe, hp)
+	fmt.Printf("\tAfter %d %s(s) you've healed back up to %d.\n", count, timeframe, hp)
 	if hp > originalHP {
 		hp = originalHP
 	}
