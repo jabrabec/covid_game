@@ -51,7 +51,7 @@ func main() {
 		}
 		fmt.Printf("Your choices lead you to infect %d other people.", infected)
 		if infected == 0 {
-			fmt.Printf(" WELL DONE!")
+			fmt.Printf(" WELL DONE!\n")
 		} else {
 			fmt.Printf(" Can you live with that?\n")
 		}
